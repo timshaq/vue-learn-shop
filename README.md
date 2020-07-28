@@ -2,7 +2,7 @@
 
 ## 28.07.2020
 ```
-Added layout future shop
+Added layout of future shop
 ```
 
 ## 29.07.2020
