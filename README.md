@@ -1,15 +1,17 @@
-<h1>Vue learn shop</h1>
-
-<ul>
-	<li>
-		<h2>28.07.2020</h2>
-		<ul>
-			<li>Layout</li>
-		</ul>
-	</li>
-</ul>
-
 # vue-learn-shop
+
+## 28.07.2020
+```
+Added layout future shop
+```
+
+## 29.07.2020
+```
+Added ProductList and ProductItem components
+Added products images in catalog
+```
+
+
 
 ## Project setup
 ```
