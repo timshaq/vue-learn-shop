@@ -3,9 +3,9 @@
 <ul>
 	<li>
 		<h2>28.07.2020</h2>
-		<ol>
+		<ul>
 			<li>Layout</li>
-		</ol>
+		</ul>
 	</li>
 </ul>
 
