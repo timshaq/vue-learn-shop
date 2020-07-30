@@ -2,13 +2,19 @@
 
 ## 28.07.2020
 ```
-Added layout of future shop
+Added layout of future shop.
 ```
 
 ## 29.07.2020
 ```
-Added ProductList and ProductItem components
-Added products images in catalog
+Added ProductList and ProductItem components;
+Added products images in catalog.
+```
+
+## 30.07.2020
+```
+Added AppPagination and ProductFilter components;
+Added prices and colors for products.
 ```
 
 
