@@ -2,34 +2,60 @@ export default [
   {
     id: 1,
     categoryId: [7],
-    colorId: ['#FFBE15', '#939393'],
-    title: 'USB Typewriter Computer Keyboard',
+    colorId: ['#73B6EA'],
+    title: 'USB Typewriter Computer Keyboard Smith Corona Sterling',
     price: 5690,
-    image: 'image/USB Typewriter Computer Keyboard.jpg',
+    image: [
+      'image/USB_corona_sterling_1.jpg',
+      'image/USB_corona_sterling_2.jpg',
+      'image/USB_corona_sterling_3.jpg',
+    ],
   },
   {
     id: 2,
     categoryId: [2],
-    colorId: ['#8BE000', '#FFF'],
+    colorId: ['#000'],
     title: 'QearFun Bluetooth Speaker Stereo Bass Sound Loudspeaker 20W',
     price: 16280,
-    image: 'image/QearFun Bluetooth Speaker Stereo Bass Sound Loudspeaker 20W.jpg',
+    image: [
+      'image/qearfun_1.jpg',
+      'image/qearfun_2.jpg',
+      'image/qearfun_3.jpg',
+    ],
   },
   {
     id: 3,
     categoryId: [4, 8],
-    colorId: ['#73B6EA', '#FFBE15', '#939393', '#8BE000', '#FF6B00', '#FFF', '#000'],
+    colorId: ['#FFF', '#FFC0CB'],
     title: 'Копилка Piggy',
     price: 1980,
-    image: 'image/piggie.jpg',
+    image: [
+      'image/piggy_1.jpg',
+      'image/piggy_2.jpg',
+      'image/piggy_3.jpg',
+      'image/piggy_4.jpg',
+      'image/piggy_5.jpg',
+      'image/piggy_6.jpg',
+      'image/piggy_7.jpg',
+      'image/piggy_8.jpg',
+      'image/piggy_9.jpg',
+    ],
   },
   {
     id: 4,
     categoryId: [3],
-    colorId: ['#FFBE15', '#FFF'],
+    colorId: ['#000', '#73B6EA', '#FF6B00'],
     title: 'Microscopic Night Vision Camera',
     price: 9679,
-    image: 'image/Microscopic Night Vision Camera.png',
+    image: [
+      'image/microscopic_camera_1.png',
+      'image/microscopic_camera_2.png',
+      'image/microscopic_camera_3.png',
+      'image/microscopic_camera_4.png',
+      'image/microscopic_camera_5.png',
+      'image/microscopic_camera_6.png',
+      'image/microscopic_camera_7.png',
+    ],
   },
   {
     id: 5,
@@ -37,7 +63,9 @@ export default [
     colorId: ['#8BE000', '#FFF', '#000'],
     title: 'Microsoft Xbox One Controller Skin - Charmed',
     price: 25690,
-    image: 'image/Microsoft Xbox One Controller Skin - Charmed.jpg',
+    image: [
+      'image/Microsoft Xbox One Controller Skin - Charmed.jpg',
+    ],
   },
   {
     id: 6,
@@ -45,7 +73,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#939393'],
     title: 'Marvel Iron Man Single Cup Coffee Maker',
     price: 17670,
-    image: 'image/Marvel Iron Man Single Cup Coffee Maker.jpg',
+    image: [
+      'image/Marvel Iron Man Single Cup Coffee Maker.jpg',
+    ],
   },
   {
     id: 7,
@@ -53,7 +83,9 @@ export default [
     colorId: ['#FFBE15', '#FFF', '#000'],
     title: 'Xbox joystick',
     price: 17692,
-    image: 'image/Xbox joystick.jpg',
+    image: [
+      'image/Xbox joystick.jpg',
+    ],
   },
   {
     id: 8,
@@ -61,7 +93,9 @@ export default [
     colorId: ['#8BE000', '#FFF'],
     title: 'Star Wars Fighter Armchair Black or White',
     price: 46590,
-    image: 'image/Star Wars Fighter Armchair Black or White.png',
+    image: [
+      'image/Star Wars Fighter Armchair Black or White.png',
+    ],
   },
   {
     id: 9,
@@ -69,7 +103,9 @@ export default [
     colorId: ['#FFBE15', '#939393'],
     title: 'Capitain Amerika Chair',
     price: 29487,
-    image: 'image/Capitain Amerika Chair.jpg',
+    image: [
+      'image/Capitain Amerika Chair.jpg',
+    ],
   },
   {
     id: 10,
@@ -77,7 +113,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#939393', '#8BE000', '#FF6B00', '#FFF', '#000'],
     title: 'Marvel Avengers Spider Man PC & Racing Game Chair',
     price: 42790,
-    image: 'image/spider_man_chair.jpg',
+    image: [
+      'image/spider_man_chair.jpg',
+    ],
   },
   {
     id: 11,
@@ -85,7 +123,9 @@ export default [
     colorId: ['#FFBE15', '#FFF'],
     title: 'Радионяня Motorola MBP16',
     price: 3690,
-    image: 'img/radio.jpg',
+    image: [
+      'img/radio.jpg',
+    ],
   },
   {
     id: 12,
@@ -93,7 +133,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#939393'],
     title: 'Ультразвуковая зубная щётка Playbrush Smart Sonic',
     price: 5660,
-    image: 'img/toothbrush.jpg',
+    image: [
+      'img/toothbrush.jpg',
+    ],
   },
   {
     id: 13,
@@ -101,7 +143,9 @@ export default [
     colorId: ['#8BE000', '#FFF', '#000'],
     title: 'Смартфон Xiaomi Mi Mix 3 6/128GB',
     price: 21790,
-    image: 'img/phone.jpg',
+    image: [
+      'img/phone.jpg',
+    ],
   },
   {
     id: 14,
@@ -109,7 +153,9 @@ export default [
     colorId: ['#8BE000', '#FFF', '#000'],
     title: 'Электроскейт Razor Cruiser',
     price: 24690,
-    image: 'img/board.jpg',
+    image: [
+      'img/board.jpg',
+    ],
   },
   {
     id: 15,
@@ -117,7 +163,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#FFF', '#000'],
     title: 'Смартфон Xiaomi Mi A3 4/64GB Android One',
     price: 14960,
-    image: 'img/phone-2.jpg',
+    image: [
+      'img/phone-2.jpg',
+    ],
   },
   {
     id: 16,
@@ -125,7 +173,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#939393'],
     title: 'Смартфон Xiaomi Redmi 6/128GB',
     price: 8960,
-    image: 'img/phone-3.jpg',
+    image: [
+      'img/phone-3.jpg',
+    ],
   },
   {
     id: 17,
@@ -133,7 +183,9 @@ export default [
     colorId: ['#8BE000', '#FFF', '#000'],
     title: 'Электрический дрифт-карт Razor Crazy Cart',
     price: 39900,
-    image: 'img/bicycle.jpg',
+    image: [
+      'img/bicycle.jpg',
+    ],
   },
   {
     id: 18,
@@ -141,7 +193,9 @@ export default [
     colorId: ['#FFBE15', '#FFF'],
     title: 'Гироскутер Razor Hovertrax 2.0',
     price: 34900,
-    image: 'img/wheels.jpg',
+    image: [
+      'img/wheels.jpg',
+    ],
   },
   {
     id: 19,
@@ -149,7 +203,9 @@ export default [
     colorId: ['#73B6EA', '#FFBE15', '#939393'],
     title: 'Детский трюковой самокат Razor Grom',
     price: 4990,
-    image: 'img/scooter.jpg',
+    image: [
+      'img/scooter.jpg',
+    ],
   },
   {
     id: 20,
@@ -157,7 +213,9 @@ export default [
     colorId: ['#FFBE15', '#FFF', '#000'],
     title: 'Роллерсёрф Razor RipStik Air Pro',
     price: 6690,
-    image: 'img/ripstik.jpg',
+    image: [
+      'img/ripstik.jpg',
+    ],
   },
   {
     id: 21,
@@ -165,7 +223,9 @@ export default [
     colorId: ['#FFBE15', '#939393'],
     title: 'Наушники AirPods с беспроводным зарядным футляром',
     price: 16560,
-    image: 'img/airpods.jpg',
+    image: [
+      'img/airpods.jpg',
+    ],
   },
   {
     id: 22,
@@ -173,6 +233,8 @@ export default [
     colorId: ['#FFBE15', '#FFF'],
     title: 'Наушники Sony',
     price: 30690,
-    image: 'img/headphones.jpg',
+    image: [
+      'img/headphones.jpg',
+    ],
   },
 ];

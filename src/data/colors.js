@@ -20,4 +20,7 @@ export default [
   {
     value: '#000',
   },
+  {
+    value: '#FFC0CB',
+  },
 ];

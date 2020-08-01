@@ -17,6 +17,14 @@ Added AppPagination and ProductFilter components;
 Added prices and colors for products.
 ```
 
+## 02.08.2020
+```
+Added MainPage, ProductPage and NotFoundPage components;
+Added Simple Routing from Scratch;
+Added global event bus eventBus.js
+Added helper functions gotoPage.js and numberFormat.js.
+```
+
 
 
 ## Project setup
