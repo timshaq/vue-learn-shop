@@ -21,7 +21,7 @@ Added prices and colors for products.
 ```
 Added MainPage, ProductPage and NotFoundPage components;
 Added Simple Routing from Scratch;
-Added global event bus eventBus.js
+Added global event bus eventBus.js;
 Added helper functions gotoPage.js and numberFormat.js.
 ```
 
