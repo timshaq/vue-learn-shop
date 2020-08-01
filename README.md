@@ -17,7 +17,7 @@ Added AppPagination and ProductFilter components;
 Added prices and colors for products.
 ```
 
-## 02.08.2020
+## 01.08.2020
 ```
 Added MainPage, ProductPage and NotFoundPage components;
 Added Simple Routing from Scratch;
