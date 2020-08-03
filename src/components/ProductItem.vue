@@ -1,11 +1,10 @@
 <template>
 
   <li class="catalog__item" >
-    <a class="catalog__pic" href="#"
-    @click.prevent="gotoPage('product', {id: product.id, colors: colors,
-      colorId: currentColor})">
+    <router-link class="catalog__pic" :to="{name: 'product',
+    params: {id: product.id, colorId: currentColor} }">
       <img :src="product.image[0]" :alt="product.title">
-    </a>
+    </router-link>
 
     <h3 class="catalog__title">
       <a href="#">

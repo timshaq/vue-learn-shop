@@ -3,19 +3,19 @@
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link"  href="#" @click.prevent="gotoPage('main')">
+          <router-link class="breadcrumbs__link" :to="{name: 'main'}">
             Каталог
-          </a>
+          </router-link>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="#" @click.prevent="gotoPage('main')">
+          <router-link class="breadcrumbs__link" :to="{name: 'main'}">
             {{ category.title }}
-          </a>
+          </router-link>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link">
+          <span class="breadcrumbs__link">
             {{ product.title }}
-          </a>
+          </span>
         </li>
       </ul>
     </div>
@@ -41,7 +41,7 @@
           {{ product.title }}
         </h2>
         <div class="item__form">
-          <form class="form" action="#" method="POST">
+          <form class="form" @submit.prevent="addToCart">
             <b class="item__price">
               {{ product.price | numberFormat }} ₽
             </b>
@@ -49,10 +49,10 @@
             <fieldset class="form__block">
               <legend class="form__legend">Цвет:</legend>
               <ul class="colors">
-                <li class="colors__item" v-for="color in this.pageParams.colors" :key="color">
+                <li class="colors__item" v-for="color in this.colors" :key="color">
                   <label class="colors__label">
                     <input class="colors__radio sr-only" type="radio" name="color-item"
-                    :value="color" v-model="currentColor">
+                    :value="color">
                     <span class="colors__value" :style="{'background-color': color}">
                     </span>
                   </label>
@@ -94,15 +94,17 @@
 
             <div class="item__row">
               <div class="form__counter">
-                <button type="button" aria-label="Убрать один товар">
+                <button type="button" aria-label="Убрать один товар"
+                @click.prevent="minusProductAmount">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-minus"></use>
                   </svg>
                 </button>
 
-                <input type="text" value="1" name="count">
+                <input type="number" v-model.number="productAmount">
 
-                <button type="button" aria-label="Добавить один товар">
+                <button type="button" aria-label="Добавить один товар"
+                @click.prevent="plusProductAmount">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-plus"></use>
                   </svg>
@@ -170,29 +172,46 @@
 <script>
 import products from '@/data/products';
 import categories from '@/data/categories';
-import gotoPage from '@/helpers/gotoPage';
 import numberFormat from '@/helpers/numberFormat';
 
 export default {
   data() {
     return {
-      currentColor: this.pageParams.colorId,
+      productAmount: 1,
     };
   },
-  props: ['pageParams'],
   filters: {
     numberFormat,
   },
   computed: {
     product() {
-      return products.find((product) => product.id === this.pageParams.id);
+      return products.find((product) => product.id === +this.$route.params.id);
     },
     category() {
       return categories.find((category) => this.product.categoryId.includes(category.id));
     },
+    colors() {
+      return this.product.colorId;
+    },
   },
   methods: {
-    gotoPage,
+    addToCart() {
+      this.$store.commit(
+        'addProductToCart',
+        {
+          productId: this.product.id,
+          amount: this.productAmount,
+        },
+      );
+    },
+    minusProductAmount() {
+      if (this.productAmount > 1) {
+        this.productAmount -= 1;
+      }
+    },
+    plusProductAmount() {
+      this.productAmount += 1;
+    },
   },
 };
 </script>

@@ -23,4 +23,10 @@ export default [
   {
     value: '#FFC0CB',
   },
+  {
+    value: '#FF0000',
+  },
+  {
+    value: '#0000FF',
+  },
 ];
