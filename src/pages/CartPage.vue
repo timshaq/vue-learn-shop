@@ -1,5 +1,6 @@
 <template>
-  <main class="content container">
+  <CartPageLoader v-if="cartProducts.length === 0" />
+  <main class="content container" v-else>
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -18,7 +19,7 @@
         Корзина
       </h1>
       <span class="content__info">
-        {{ cartProducts.length }} товара
+        {{ cartProducts.length | productsNumber }}
       </span>
     </div>
 
@@ -26,52 +27,9 @@
       <form class="cart__form form" action="#" method="POST">
         <div class="cart__field">
           <ul class="cart__list">
-            <li class="cart__item product" v-for="product in cartProducts" :key="product.id">
-              <div class="product__pic">
-                <img :src="product.image[0]" width="120" height="120"
-                :alt="product.title">
-              </div>
-              <h3 class="product__title">
-                {{ product.title }}
-              </h3>
-              <p class="product__info product__info--color">
-                Цвет:
-                <span>
-                  <i style="background-color: #FF6B00"></i>
-                  Оранжевый
-                </span>
-              </p>
-              <span class="product__code">
-                Артикул: {{ product.id }}
-              </span>
 
-              <div class="product__counter form__counter">
-                <button type="button" aria-label="Убрать один товар">
-                  <svg width="10" height="10" fill="currentColor">
-                    <use xlink:href="#icon-minus"></use>
-                  </svg>
-                </button>
+            <CartItem v-for="product in cartProducts" :key="product.id" :product="product"/>
 
-                <input type="text" value="1" name="count">
-
-                <button type="button" aria-label="Добавить один товар">
-                  <svg width="10" height="10" fill="currentColor">
-                    <use xlink:href="#icon-plus"></use>
-                  </svg>
-                </button>
-              </div>
-
-              <b class="product__price">
-                {{ product.price | numberFormat }} ₽
-              </b>
-
-              <button class="product__del button-del" type="button"
-              aria-label="Удалить товар из корзины">
-                <svg width="20" height="20" fill="currentColor">
-                  <use xlink:href="#icon-close"></use>
-                </svg>
-              </button>
-            </li>
           </ul>
         </div>
 
@@ -80,7 +38,7 @@
             Мы&nbsp;посчитаем стоимость доставки на&nbsp;следующем этапе
           </p>
           <p class="cart__price">
-            Итого: <span>32 970 ₽</span>
+            Итого: <span> {{ cartTotalPrice | numberFormat }} ₽</span>
           </p>
 
           <button class="cart__button button button--primery" type="submit">
@@ -93,21 +51,23 @@
 </template>
 
 <script>
-import products from '@/data/products';
 import numberFormat from '@/helpers/numberFormat';
+import productsNumber from '@/helpers/productsNumber';
+import CartItem from '@/components/CartItem.vue';
+import CartPageLoader from '@/components/CartPageLoader.vue';
+import { mapGetters } from 'vuex';
 
 export default {
+  components: {
+    CartItem,
+    CartPageLoader,
+  },
   filters: {
     numberFormat,
+    productsNumber,
   },
   computed: {
-    cartProducts() {
-      const idList = [];
-      this.$store.state.cartProducts.map((item) => idList.push(item.productId));
-      const productList = [];
-      idList.map((id) => productList.push(products.find((product) => product.id === id)));
-      return productList;
-    },
+    ...mapGetters({ cartProducts: 'cartDetailProducts', cartTotalPrice: 'cartTotalPrice' }),
   },
 };
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <main class="content container">
+  <ProductPageLoader v-if="productLoading" />
+  <main v-else-if="!productData">Error!</main>
+  <main v-else class="content container">
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -23,12 +25,12 @@
     <section class="item">
       <div class="item__pics pics">
         <div class="pics__wrapper">
-          <img width="570" height="570" :src="product.image[0]" :alt="product.title">
+          <img width="570" height="570" :src="product.image" :alt="product.title">
         </div>
         <ul class="pics__list">
-          <li class="pics__item" v-for="img in product.image" :key="img">
+          <li class="pics__item">
             <a href="" class="pics__link pics__link--current">
-              <img width="98" height="98" :src="img"
+              <img width="98" height="98" :src="product.image"
               :alt="product.title">
             </a>
           </li>
@@ -49,7 +51,7 @@
             <fieldset class="form__block">
               <legend class="form__legend">Цвет:</legend>
               <ul class="colors">
-                <li class="colors__item" v-for="color in this.colors" :key="color">
+                <li class="colors__item" v-for="color in colors" :key="color">
                   <label class="colors__label">
                     <input class="colors__radio sr-only" type="radio" name="color-item"
                     :value="color">
@@ -111,9 +113,23 @@
                 </button>
               </div>
 
-              <button class="button button--primery" type="submit">
+              <button class="button button--primery" type="submit"
+              :disabled="productAddSendingToCart">
                 В корзину
               </button>
+            </div>
+            <div v-show="productAddedToCart"
+            style="margin: 10px 0; display: flex;">
+              <div style="font-size: 20px; color: rgb(70,255,46);
+              margin: 0px 20px 0 5px; line-height: 16px;">
+                ✓
+              </div>
+              Товар добавлен в корзину
+            </div>
+            <div v-show="productAddSendingToCart"
+            style="margin: 10px 0; display: flex;">
+              <div class="ring-loader"></div>
+              Добавляем товар в корзину...
             </div>
           </form>
         </div>
@@ -170,39 +186,52 @@
 </template>
 
 <script>
-import products from '@/data/products';
-import categories from '@/data/categories';
+import axios from 'axios';
+import { API_BASE_URL } from '@/config';
 import numberFormat from '@/helpers/numberFormat';
+import { mapActions } from 'vuex';
+import ProductPageLoader from '@/components/ProductPageLoader.vue';
 
 export default {
   data() {
     return {
       productAmount: 1,
+
+      productData: null,
+      productLoading: false,
+      productLoadingFailed: false,
+
+      productAddedToCart: false,
+      productAddSendingToCart: false,
     };
   },
+  components: { ProductPageLoader },
   filters: {
     numberFormat,
   },
   computed: {
     product() {
-      return products.find((product) => product.id === +this.$route.params.id);
+      return this.productData
+        ? { ...this.productData, image: this.productData.image.file.url }
+        : [];
     },
     category() {
-      return categories.find((category) => this.product.categoryId.includes(category.id));
+      return this.productData.category;
     },
     colors() {
-      return this.product.colorId;
+      return this.product.colors.map((color) => color.code);
     },
   },
   methods: {
+    ...mapActions(['addProductToCart']),
     addToCart() {
-      this.$store.commit(
-        'addProductToCart',
-        {
-          productId: this.product.id,
-          amount: this.productAmount,
-        },
-      );
+      this.productAddedToCart = false;
+      this.productAddSendingToCart = true;
+      this.addProductToCart({ productId: this.product.id, amount: this.productAmount })
+        .then(() => {
+          this.productAddedToCart = true;
+          this.productAddSendingToCart = false;
+        });
     },
     minusProductAmount() {
       if (this.productAmount > 1) {
@@ -212,6 +241,69 @@ export default {
     plusProductAmount() {
       this.productAmount += 1;
     },
+    loadProduct() {
+      this.productLoading = true;
+      this.productLoadingFailed = false;
+      this.productAddedToCart = false;
+      this.productAddSendingToCart = false;
+      this.productAmount = 1;
+      axios.get(`${API_BASE_URL}/api/products/${+this.$route.params.id}`)
+        .then((res) => { this.productData = res.data; })
+        .catch(() => { this.productLoadingFailed = true; })
+        .then(() => { this.productLoading = false; });
+    },
+  },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.loadProduct();
+      },
+      immediate: true,
+    },
   },
 };
 </script>
+<style media="screen">
+.ring-loader,
+.ring-loader:after {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.ring-loader {
+  margin: 0 20px 0 0;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 2px solid rgba(70,255,46, 0.2);
+  border-right: 2px solid rgba(70,255,46, 0.2);
+  border-bottom: 2px solid rgba(70,255,46, 0.2);
+  border-left: 2px solid #46ff2e;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+</style>

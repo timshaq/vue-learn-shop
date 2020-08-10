@@ -41,9 +41,16 @@ export default {
       return Math.ceil(this.count / this.perPage);
     },
     isClickablePrev() {
+      if (!this.count) {
+        return true;
+      }
+
       return this.page === 1;
     },
     isClickableNext() {
+      if (!this.count) {
+        return true;
+      }
       return this.page === this.pages;
     },
   },

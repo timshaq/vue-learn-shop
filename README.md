@@ -32,6 +32,14 @@ Simple Routing from Scratch replaced by the VueRouter;
 Added state management pattern and library Vuex.
 ```
 
+## 11.08.2020 — update:shop(4)
+```
+Added CartItem component;
+Added loaders for ProductList, ProductPage and CartPage components;
+Added helper function-filter productNumber.js;
+Changed local directories to API vue-study.dev.creonit.ru.
+```
+
 
 
 ## Project setup

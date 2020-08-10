@@ -2,7 +2,9 @@
   <div>
   <header class="header">
     <div class="header__wrapper container">
-      <span class="header__info">Каталог</span>
+      <router-link class="header__info" :to="{name: 'main'}">
+        Каталог
+      </router-link>
 
       <router-link class="header__logo" :to="{name: 'main'}">
         <img src="img/svg/logo-tech.svg" alt="Логотип интернет магазина Технозавррр"
@@ -118,9 +120,21 @@
 
 <script>
 import CartIndicator from '@/components/CartIndicator.vue';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'App',
   components: { CartIndicator },
+  created() {
+    const userAccessKey = localStorage.getItem('userAccessKey');
+    if (userAccessKey) {
+      this.updateUserAccessKey(userAccessKey);
+    }
+    this.loadCart();
+  },
+  methods: {
+    ...mapActions(['loadCart']),
+    ...mapMutations(['updateUserAccessKey']),
+  },
 };
 </script>

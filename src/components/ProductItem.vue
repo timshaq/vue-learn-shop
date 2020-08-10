@@ -2,8 +2,8 @@
 
   <li class="catalog__item" >
     <router-link class="catalog__pic" :to="{name: 'product',
-    params: {id: product.id, colorId: currentColor} }">
-      <img :src="product.image[0]" :alt="product.title">
+    params: {id: product.id} }">
+      <img :src="product.image" :alt="product.title">
     </router-link>
 
     <h3 class="catalog__title">
@@ -37,7 +37,7 @@ import numberFormat from '@/helpers/numberFormat';
 export default {
   data() {
     return {
-      currentColor: this.product.colorId[0],
+      currentColor: this.product.colors[0].code,
     };
   },
   props: ['product'],
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     colors() {
-      return this.product.colorId;
+      return this.product.colors.map((color) => color.code);
     },
   },
   methods: {
