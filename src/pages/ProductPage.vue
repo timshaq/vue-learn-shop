@@ -119,7 +119,7 @@
               </button>
             </div>
             <div v-show="productAddedToCart"
-            style="margin: 10px 0; display: flex;">
+            style="margin: 30px 0 0 0; display: flex;">
               <div style="font-size: 20px; color: rgb(70,255,46);
               margin: 0px 20px 0 5px; line-height: 16px;">
                 ✓
@@ -127,7 +127,7 @@
               Товар добавлен в корзину
             </div>
             <div v-show="productAddSendingToCart"
-            style="margin: 10px 0; display: flex;">
+            style="margin: 30px 0 0 0; display: flex;">
               <div class="ring-loader"></div>
               Добавляем товар в корзину...
             </div>

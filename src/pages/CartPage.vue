@@ -1,6 +1,6 @@
 <template>
-  <CartPageLoader v-if="cartProducts.length === 0" />
-  <main class="content container" v-else>
+  <CartPageLoader v-if="cartLoading" />
+  <main v-else class="content container">
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -23,8 +23,12 @@
       </span>
     </div>
 
-    <section class="cart">
-      <form class="cart__form form" action="#" method="POST">
+    <section v-if="cartProducts.length === 0" class="cart">
+      <h2>Товаров в корзине нет</h2>
+    </section>
+
+    <section v-else class="cart">
+      <form class="cart__form form">
         <div class="cart__field">
           <ul class="cart__list">
 
@@ -41,9 +45,10 @@
             Итого: <span> {{ cartTotalPrice | numberFormat }} ₽</span>
           </p>
 
-          <button class="cart__button button button--primery" type="submit">
+          <router-link tag="button" :to="{name: 'order'}"
+          class="cart__button button button--primery" type="submit">
             Оформить заказ
-          </button>
+          </router-link>
         </div>
       </form>
     </section>
@@ -55,7 +60,7 @@ import numberFormat from '@/helpers/numberFormat';
 import productsNumber from '@/helpers/productsNumber';
 import CartItem from '@/components/CartItem.vue';
 import CartPageLoader from '@/components/CartPageLoader.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   components: {
@@ -68,6 +73,7 @@ export default {
   },
   computed: {
     ...mapGetters({ cartProducts: 'cartDetailProducts', cartTotalPrice: 'cartTotalPrice' }),
+    ...mapState({ cartLoading: 'cartLoading' }),
   },
 };
 </script>

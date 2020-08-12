@@ -5,7 +5,7 @@
       <use xlink:href="#icon-cart"></use>
     </svg>
     <div class=" header__ring-loader" aria-label="Количество товаров"
-    v-if="cartProducts.length === 0">
+    v-if="cartLoading">
     </div>
     <span v-else class="header__count" aria-label="Количество товаров">
       {{ cartProducts.length }}
@@ -18,7 +18,7 @@ import { mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapState({ cartProducts: 'cartProducts' }),
+    ...mapState({ cartProducts: 'cartProducts', cartLoading: 'cartLoading' }),
   },
 };
 </script>

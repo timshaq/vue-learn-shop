@@ -40,6 +40,14 @@ Added helper function-filter productNumber.js;
 Changed local directories to API vue-study.dev.creonit.ru.
 ```
 
+## 12.08.2020 — update:shop(5)
+```
+Added OrderPage and OrderPageInfo components (pages);
+Added BaseFormField, BaseFormText and BaseFormTextarea components;
+Added formFieldMixin.js mixin;
+Fixed loader's bug from cart's length = 0.
+```
+
 
 
 ## Project setup
